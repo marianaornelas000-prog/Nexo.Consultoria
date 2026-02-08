@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexo Consultoría | Capacitación, Procesos y Tecnología</title>
+    <style>
+        /* ===== IMPORTAR FUENTE GOOGLE FONTS ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+        /* ===== RESET Y CONFIGURACIÓN BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #ffffff;
+        }
+
+        /* ===== VARIABLES DE COLOR ===== */
+        :root {
+            --color-primary: #4a90e2;
+            --color-primary-dark: #357abd;
+            --color-accent: #50c878;
+            --color-accent-light: #6dd890;
+            --color-text: #2c3e50;
+            --color-text-light: #5a6c7d;
+            --color-border: #e0e6ed;
+            --color-background: #f7f9fc;
+            --color-background-light: #ffffff;
+        }
+
+        /* ===== TIPOGRAFÍA ===== */
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.75rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--color-text-light);
+            font-weight: 400;
+        }
+
+        /* ===== CONTENEDORES ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* ===== NAVEGACIÓN ===== */
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 15px rgba(74, 144, 226, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+        }
+
+        /* ===== MENÚ HAMBURGUESA ===== */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background-color: var(--color-primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ===== HERO / PRESENTACIÓN ===== */
+        #presentacion {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.95) 0%, rgba(53, 122, 189, 0.95) 50%, rgba(80, 200, 120, 0.95) 100%),
+                        url('Equipo_colaborativo.png') center/cover;
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #presentacion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        #presentacion .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #presentacion h1 {
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        #presentacion .subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            font-weight: 400;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background-color: var(--color-accent);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(80, 200, 120, 0.4);
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(80, 200, 120, 0.5);
+        }
+
+        /* ===== SECCIÓN SERVICIOS ===== */
+        #servicios {
+            background-color: var(--color-background-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            padding: 2.5rem 2rem;
+            background-color: var(--color-background-light);
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            border-radius: 12px 12px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(74, 144, 226, 0.15);
+            border-color: var(--color-primary);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 55px;
+            height: 55px;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== ICONOS SVG SIMPLES ===== */
+        .icon-education {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ===== SECCIÓN CÓMO TRABAJAMOS ===== */
+        #como-trabajamos {
+            background: linear-gradient(135deg, var(--color-background) 0%, #ffffff 100%);
+            position: relative;
+        }
+
+        .process-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .process-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .step-content p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* ===== SECCIÓN CASOS DE ÉXITO ===== */
+        #casos {
+            background-color: var(--color-background-light);
+        }
+
+        .cases-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .case-card {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2.5rem;
+            padding: 2.5rem;
+            background-color: var(--color-background);
+            border-radius: 12px;
+            border-left: 5px solid var(--color-accent);
+            transition: all 0.3s;
+            align-items: start;
+        }
+
+        .case-card:hover {
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.12);
+            transform: translateX(5px);
+        }
+
+        .case-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .case-content h3 {
+            color: var(--color-primary);
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .case-section {
+            margin-bottom: 1.75rem;
+        }
+
+        .case-section h4 {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .case-section p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== SECCIÓN CONTACTO ===== */
+        #contacto {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #357abd 50%, var(--color-accent) 100%);
+            color: #ffffff;
+            position: relative;
+        }
+
+        #contacto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.2;
+        }
+
+        #contacto .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #contacto .section-header h2,
+        #contacto .section-header p {
+            color: #ffffff;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2.5rem;
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-item:hover {
+            background-color: rgba(255,255,255,0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1.25rem;
+            color: #ffffff;
+        }
+
+        .contact-item h3 {
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #1a252f;
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.7);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .process-content {
+                grid-template-columns: 1fr;
+            }
+
+            .process-image {
+                height: 400px;
+            }
+
+            .case-card {
+                grid-template-columns: 1fr;
+            }
+
+            .case-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Mostrar el menú hamburguesa */
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Ocultar el menú y hacerlo vertical */
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background-color: #ffffff;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                padding: 2rem;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li a {
+                font-size: 1.1rem;
+            }
+
+            .logo-img {
+                height: 48px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.85rem;
+            }
+
+            section {
+                padding: 3.5rem 0;
+            }
+
+            #presentacion {
+                padding: 5rem 0;
+            }
+
+            .services-grid {
+                gap: 2rem;
+            }
+
+            .contact-info {
+                gap: 2rem;
+            }
+
+            .process-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                width: 80%;
+            }
+
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            .logo-img {
+                height: 45px;
+            }
+
+            .logo-text {
+                font-size: 1.1rem;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .step-number {
+                min-width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .step {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVEGACIÓN ===== -->
+    <nav>
+        <div class="container">
+            <a href="#presentacion" class="logo-container">
+                <img src="Logo1.png" alt="Nexo Consultoría" class="logo-img">
+                <span class="logo-text">Nexo Consultoría</span>
+            </a>
+            
+            <!-- Botón hamburguesa -->
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul id="navMenu">
+                <li><a href="#presentacion" class="nav-link">Inicio</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#como-trabajamos" class="nav-link">Proceso</a></li>
+                <li><a href="#casos" class="nav-link">Casos</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        // Funcionalidad del menú hamburguesa
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Toggle del menú al hacer clic en el botón hamburguesa
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Cerrar el menú al hacer clic en cualquier enlace
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Cerrar el menú al hacer clic fuera de él
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+
+    <!-- ===== PRESENTACIÓN ===== -->
+    <section id="presentacion">
+        <div class="container">
+            <h1>Transformamos procesos y equipos con capacitación y tecnología</h1>
+            <p class="subtitle">
+                Ayudamos a instituciones educativas y pequeñas empresas a optimizar su trabajo, 
+                capacitar a sus equipos y aprovechar la tecnología y la inteligencia artificial 
+                de manera estratégica.
+            </p>
+            <a href="#contacto" class="cta-button">Conversemos</a>
+        </div>
+    </section>
+
+    <!-- ===== SERVICIOS ===== -->
+    <section id="servicios">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestros Servicios</h2>
+                <p>Acompañamos a organizaciones en el diseño, optimización e implementación de soluciones prácticas y sostenibles.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Servicio 1 -->
+                <div class="service-card">
+                    <svg class="service-icon icon-education" viewBox="0 0 24 24">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                        <path d="M12 14l9-5v9.5a2.5 2.5 0 01-2.5 2.5h-13A2.5 2.5 0 013 18.5V9l9 5z"/>
+                    </svg>
+                    <h3>Capacitación Docente y Empresarial</h3>
+                    <p>Diseñamos programas de formación en uso estratégico de tecnología, inteligencia artificial aplicada, y herramientas digitales para mejorar la enseñanza y la productividad.</p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="service-card">
+                    <svg class="service-icon icon-education" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M3 9h18M9 21V9"/>
+                    </svg>
+                    <h3>Diseño de Procesos y Flujos de Trabajo</h3>
+                    <p>Organizamos y optimizamos procesos administrativos, académicos y operativos. Implementamos soluciones con Google Workspace y otras plataformas colaborativas.</p>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="service-card">
+                    <svg class="service-icon icon-education" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <h3>Consultoría en Tecnología e IA</h3>
+                    <p>Asesoramos en la adopción responsable y efectiva de herramientas tecnológicas e inteligencia artificial adaptadas a las necesidades reales de cada organización.</p>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="service-card">
+                    <svg class="service-icon icon-education" viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                    </svg>
+                    <h3>Organización de Programas Educativos</h3>
+                    <p>Apoyamos en el diseño curricular, estructura de programas académicos, y organización de proyectos educativos con enfoque práctico y centrado en el aprendizaje.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CÓMO TRABAJAMOS ===== -->
+    <section id="como-trabajamos">
+        <div class="container">
+            <div class="section-header">
+                <h2>¿Cómo Trabajamos?</h2>
+                <p>Nuestra metodología se basa en escuchar, diagnosticar y acompañar con soluciones personalizadas.</p>
+            </div>
+
+            <div class="process-content">
+                <img src="Equip_oficina.png" alt="Equipo de trabajo colaborativo" class="process-image">
+                
+                <div class="process-steps">
+                    <!-- Paso 1 -->
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Diagnóstico</h3>
+                            <p>Conocemos tu organización, necesidades específicas y contexto para entender el punto de partida.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2 -->
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Diseño Personalizado</h3>
+                            <p>Desarrollamos una propuesta a la medida con objetivos claros, herramientas adecuadas y metodología adaptada.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3 -->
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Implementación</h3>
+                            <p>Acompañamos de cerca durante la capacitación, configuración de procesos o puesta en marcha de soluciones tecnológicas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4 -->
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Seguimiento</h3>
+                            <p>Evaluamos resultados, ajustamos lo necesario y brindamos soporte continuo para asegurar la sostenibilidad del cambio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CASOS DE ÉXITO ===== -->
+    <section id="casos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Casos de Éxito</h2>
+                <p>Proyectos que han transformado la manera en que nuestros clientes trabajan, organizan y capacitan a sus equipos.</p>
+            </div>
+
+            <div class="cases-container">
+                <!-- Caso 1 -->
+                <div class="case-card">
+                    <img src="Equipo_maestros.png" alt="Capacitación docente" class="case-image">
+                    <div class="case-content">
+                        <h3>Capacitación en Tecnología e IA para Docentes</h3>
+                        
+                        <div class="case-section">
+                            <h4>Contexto</h4>
+                            <p>Una institución educativa de nivel medio requería actualizar las competencias digitales de su planta docente para integrar herramientas tecnológicas y conceptos de inteligencia artificial en el aula.</p>
+                        </div>
+
+                        <div class="case-section">
+                            <h4>Reto</h4>
+                            <p>Los profesores tenían niveles heterogéneos de conocimiento tecnológico, y existía resistencia al cambio por falta de claridad sobre el uso práctico de estas herramientas en contextos educativos.</p>
+                        </div>
+
+                        <div class="case-section">
+                            <h4>Solución Implementada</h4>
+                            <p>Diseñamos e impartimos un programa de capacitación modular enfocado en aplicaciones concretas: creación de materiales didácticos con IA, uso de plataformas colaborativas, y estrategias para enseñar habilidades digitales a estudiantes. Incluimos sesiones prácticas y acompañamiento personalizado.</p>
+                        </div>
+
+                        <div class="case-section">
+                            <h4>Impacto Logrado</h4>
+                            <p>Los docentes adquirieron confianza en el uso de tecnología, integraron nuevas dinámicas en sus clases y reportaron mayor eficiencia en la preparación de materiales. La institución logró homogeneizar el nivel de competencias digitales de su equipo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caso 2 -->
+                <div class="case-card">
+                    <img src="Persona_frustrada.png" alt="Antes: procesos desorganizados" class="case-image">
+                    <div class="case-content">
+                        <h3>Diseño de Flujos de Trabajo con Google Workspace</h3>
+                        
+                        <div class="case-section">
+                            <h4>Contexto</h4>
+                            <p>Una pequeña empresa del sector servicios enfrentaba desorganización en la gestión de proyectos, documentación dispersa y falta de claridad en las responsabilidades de cada miembro del equipo.</p>
+                        </div>
+
+                        <div class="case-section">
+                            <h4>Reto</h4>
+                            <p>Centralizar la información, optimizar la comunicación interna y establecer procesos claros sin requerir inversión en software costoso o cambios radicales en la cultura organizacional.</p>
+                        </div>
+
+                        <div class="case-section">
+                            <h4>Solución Implementada</h4>
+                            <p>Configuramos Google Workspace como plataforma central de trabajo. Diseñamos flujos de trabajo estandarizados, plantillas de documentos compartidos, y estructuras de carpetas organizadas por proyectos. Capacitamos al equipo en el uso eficiente de herramientas colaborativas.</p>
+                        </div>
+
+                        <div class="case-section">
+                            <h4>Impacto Logrado</h4>
+                            <p>La empresa redujo el tiempo dedicado a buscar información y coordinar tareas. Se estableció un sistema claro de comunicación y seguimiento de proyectos, mejorando la productividad y la satisfacción del equipo con su forma de trabajar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caso 3 -->
+                <div class="case-card">
+                    <img src="Trabajador_feliz.png" alt="Después: procesos optimizados" class="case-image">
+                    <div class="case-content">
+                        <h3>Organización de Programa Educativo Integral</h3>
+                        
+                        <div class="case-section">
+                            <h4>Contexto</h4>
+                            <p>Una organización educativa necesitaba estructurar un nuevo programa de formación continua que integrara contenidos académicos, actividades prácticas y seguimiento de participantes de manera coherente.</p>
+                        </div>
+
+                        <div class="case-section">
+                            <h4>Reto</h4>
+                            <p>Diseñar un programa desde cero que cumpliera con estándares educativos, fuera atractivo para los participantes y pudiera ser administrado eficientemente con recursos limitados.</p>
+                        </div>
+
+                        <div class="case-section">
+                            <h4>Solución Implementada</h4>
+                            <p>Desarrollamos la estructura curricular completa, definimos objetivos de aprendizaje por módulo, diseñamos instrumentos de evaluación y creamos un calendario de actividades. Implementamos un sistema de gestión documental para el seguimiento administrativo del programa.</p>
+                        </div>
+
+                        <div class="case-section">
+                            <h4>Impacto Logrado</h4>
+                            <p>El programa se lanzó con claridad en su propuesta de valor, estructura sólida y procesos administrativos eficientes. Los participantes valoraron la organización y coherencia del programa, facilitando su adopción y escalamiento futuro.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hablemos de tu Proyecto</h2>
+                <p>Estamos listos para escucharte y acompañarte en la transformación de tu organización.</p>
+            </div>
+
+            <div class="contact-info">
+                <!-- Email -->
+                <div class="contact-item">
+                    <svg class="contact-icon icon-education" viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <h3>Correo Electrónico</h3>
+                    <a href="/cdn-cgi/l/email-protection#167b77647f7778773879647873777a776526262656717b777f7a3875797b"><span class="__cf_email__" data-cfemail="3954584b5058575817564b575c5855584a090909795e54585055175a5654">[email&#160;protected]</span></a>
+                </div>
+
+                <!-- Teléfono / WhatsApp -->
+                <div class="contact-item">
+                    <svg class="contact-icon icon-education" viewBox="0 0 24 24">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                    </svg>
+                    <h3>Teléfono / WhatsApp</h3>
+                    <a href="tel:+523331001345">333 100 1345</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
